@@ -1,0 +1,18 @@
+{% extends 'receptionist/receptionistnav.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="content">
+    <div class="text-center">
+        <strong>Receptionist Login Form</strong>
+    </div>
+    <br>
+    <div class="container">
+        <form action="{% url 'afterRLF' %}" method="POST">
+            {% csrf_token %}
+            {{ receptionistLoginForm|crispy }}
+            <input type="submit" value="submit" class="btn btn-success">
+            <div style="color: red;">{{ error }}</div>
+        </form>
+    </div>
+</div>
+{% endblock %}

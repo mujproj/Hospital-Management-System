@@ -1,0 +1,18 @@
+{% extends 'patient/patientnav.html' %}
+{% block content %}
+<div class="content">
+    <div class="container">
+        {% for a in allobj %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">Appointment</h5>
+            <p class="card-text">Doctor Name: {{ a.Doctor }}</p>
+            <p class="card-text">Date Of Appointment: {{ a.Date }}</p>
+            <p class="card-text">Status: {{ a.status }}</p>
+            <a href="#" class="btn btn-primary">View More</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

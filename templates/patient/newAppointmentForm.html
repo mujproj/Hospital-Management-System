@@ -1,0 +1,19 @@
+{% extends 'receptionist/receptionistnav.html' %}
+{% block content %}
+<div class="content">
+    <div class="text-center">
+        <strong>New Appointment Form</strong>
+    </div>
+    <br>
+    <div class="container">
+        {% load crispy_forms_tags %}
+        <form action="{% url 'afterNAF' %}" method="POST">
+            {% csrf_token %}
+            {{ newAppointmentForm|crispy }}
+            <input type="submit" value="submit" class="btn btn-success">
+            <div style="color: red;">{{ error }}</div>
+            <div style="color: red;">{{ message }}</div>
+        </form>
+    </div>
+</div>
+{% endblock %}

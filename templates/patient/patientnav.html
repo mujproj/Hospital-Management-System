@@ -1,0 +1,68 @@
+{% extends 'index.html' %}
+{% block maincontent %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">HMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}"><button type="button" class="btn btn-outline-light">Home <span class="sr-only">(current)</span></button></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}"><button type="button" class="btn btn-outline-light">About Us</button></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}"><button type="button" class="btn btn-outline-light">Contact</button></a>
+                </li>
+                {% if "username" in request.session %}
+                <li class="nav-item">
+                    <a href="{% url 'profile' %}" class="nav-link"><button type="button" class="btn btn-outline-light">Profile</button></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'medicalhistory' %}" class="nav-link"><button type="button" class="btn btn-outline-light">Medical History</button></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'displayPaymentForm' %}" class="nav-link"><button type="button" class="btn btn-outline-light">Make Payments</button></a>
+                </li>
+                {% endif %}
+            </ul>
+            <form class="form-inline my-2 my-lg-0 mr-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 100px;">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav mr-left">
+                {% if "username" not in request.session %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'displayPLF' %}" class="nav-link"><button type="button" class="btn btn-outline-primary">Login</button></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'displayPRF' %}" class="nav-link"><button type="button" class="btn btn-outline-primary">Sign Up</button></a>
+                </li>
+                {% endif %}
+                <li class="nav-item dropdown">
+                    <button type="button" class="btn btn-outline-primary">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Options           
+                        </a>
+                        <div class="dropdown-menu ml-auto" aria-labelledby="navbarDropdown" style="right: 0;">
+                            <a class="dropdown-item" href="{% url 'help' %}">Help?</a>
+                            {% if "username" in request.session %}
+                            <a class="dropdown-item" href="{% url 'patientLogout' %}">LogOUt</a>
+                            <a href="{% url 'appointment' %}" class="dropdown-item">Your Appointments</a>
+                            <a href="{% url 'invoicepayments' %}" class="dropdown-item">Invoice & Payments</a>
+                            <a href="{% url 'displayPDF' %}" class="dropdown-item">Patient Form</a>
+                            <a href="{% url 'invoicepayments' %}" class="dropdown-item">Invoices</a>
+                            {% endif %}
+                        </div>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
